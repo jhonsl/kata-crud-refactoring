@@ -1,24 +1,20 @@
-import React, {createContext } from 'react';
-import Form from './components/Form';
-import List from './components/List';
-import Provider from './components/Provider';
-
-const HOST_API = "http://localhost:8080/api";
-const initialState = {
-  todo: { list: [], item: {} }
-};
-const Store = createContext(initialState)
+import React from 'react';
+import { StoreProvider } from "./store";
+import ListView from "./list/ListView";
+import FormView from "./list/FormView";
 
 function App() {
-
-  return (
-    <div className="container mt-5">
-      <Provider state = {initialState} store = {Store}>
-        <Form url = {HOST_API} store = {Store}/>
-        <List url = {HOST_API} store = {Store}/>
-      </Provider>
+  return <StoreProvider>
+    <div className="title">
+      <h3>Dashboard</h3>
     </div>
-  );
+    <div className="container">
+      <div className="content">
+        <FormView />
+        <ListView />
+      </div>
+    </div>
+  </StoreProvider>
 }
 
 export default App;
